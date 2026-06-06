@@ -1,0 +1,11 @@
+# SPA client-side routing fallback for Apache (Hostpoint).
+# Serve real files/dirs directly; route everything else to index.html
+# so deep links and refreshes (e.g. /demo) work.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
